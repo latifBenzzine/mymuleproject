@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:db="http://www.mulesoft.org/schema/mule/db" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="2a033341-cde6-408c-846c-d11fb9773ff6" >
+		<http:listener-connection host="localhost" port="8081" />
+	</http:listener-config>
+	<db:config name="Database_Config" doc:name="Database Config" doc:id="c45331cb-531d-493e-855e-9d96fcf30f5d" >
+		<db:my-sql-connection host="localhost" port="3306" user="root" password="latifdev" database="restwithspring"/>
+	</db:config>
+	<flow name="mymuleprojectFlow1" doc:id="059e2ce1-354d-45cb-a2d2-1bb2a2d64e27" >
+		<http:listener doc:name="Listener" doc:id="4b7ca40c-9b98-47fd-8bee-5522a0ef1261" config-ref="HTTP_Listener_config" path="/"/>
+		<db:select doc:name="database" doc:id="bc9708c5-e765-42ac-bbc7-df9896339a72" config-ref="Database_Config">
+			<db:sql >select UserID from User where UserID = #[payload];</db:sql>
+		</db:select>
+		<set-payload value="#[payload[0].UserID]" doc:name="Set Payload" doc:id="0280134c-b8b3-4b91-aa29-319552272d49" />
+	</flow>
+</mule>
