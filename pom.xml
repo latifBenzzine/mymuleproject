@@ -15,7 +15,8 @@
 
 		<app.runtime>4.1.0</app.runtime>
 		<mule.maven.plugin.version>3.1.0</mule.maven.plugin.version>
-	</properties>
+	<munit.version>2.1.0</munit.version>
+    </properties>
 
 	<build>
 		<plugins>
@@ -25,6 +26,21 @@
 				<version>${mule.maven.plugin.version}</version>
 				<extensions>true</extensions>
 				<configuration>
+				<deploymentType>cloudhub</deploymentType>
+				<muleVersion>3.8.1</muleVersion>
+				<username>latifmulesoft</username>
+				<password>Benab9592</password>
+				<workerType>Micro</workerType>
+				<redeploy>true</redeploy>
+				<environment>SANDBOX</environment>
+			
+				<executions>
+					<execution>
+						<goals>
+						<goal>deploy</goal>
+						</goals>
+					</execution>
+				</executions>
 				<sharedLibraries>
                         <sharedLibrary>
                             <groupId>com.networknt</groupId>
@@ -37,7 +53,30 @@
                     </sharedLibraries>
                 </configuration>
 			</plugin>
-		</plugins>
+		<plugin>
+                <groupId>com.mulesoft.munit.tools</groupId>
+                <artifactId>munit-maven-plugin</artifactId>
+                <version>${munit.version}</version>
+                <executions>
+                    <execution>
+                        <id>test</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>test</goal>
+                            <goal>coverage-report</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <coverage>
+                        <runCoverage>true</runCoverage>
+                        <formats>
+                            <format>html</format>
+                        </formats>
+                    </coverage>
+                </configuration>
+            </plugin>
+        </plugins>
 	</build>
 
 	<dependencies>
@@ -68,6 +107,19 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>6.0.6</version>
+        </dependency>
+    	<dependency>
+            <groupId>com.mulesoft.munit</groupId>
+            <artifactId>munit-runner</artifactId>
+            <version>2.1.0</version>
+            <classifier>mule-plugin</classifier>
+            <scope>test</scope>
+        </dependency>	<dependency>
+            <groupId>com.mulesoft.munit</groupId>
+            <artifactId>munit-tools</artifactId>
+            <version>2.1.0</version>
+            <classifier>mule-plugin</classifier>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
