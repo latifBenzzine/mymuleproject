@@ -10,11 +10,11 @@
 	<munit:config name="mymuleproject-test-suite.xml" />
 	<munit:test name="mymuleproject-test-suite-mymuleprojectFlow1Test" description="Test" doc:id="268865b0-bc5d-44c4-93f5-bb098d8ddb94" >
 		<munit:execution >
-			<set-payload value="101" doc:name="Set Message" doc:id="0f3df778-009c-4e17-9276-a43ef76eaa7e" />
+			<set-payload value="11" doc:name="Set Message" doc:id="0f3df778-009c-4e17-9276-a43ef76eaa7e" />
 			<flow-ref doc:name="mymuleprojectFlow1" doc:id="1b1070e5-7118-4ba2-a82a-a6f183be4006" name="mymuleprojectFlow1"/>
 		</munit:execution>
 		<munit:validation>
-			<munit-tools:assert-that doc:name="Assert that" doc:id="3e891e8b-eed3-4d91-ad71-1acdcf580e6b" message="Invalid user Id" is="ABC" expression="#[payload]"/>
+			<munit-tools:assert-that doc:name="Assert that" doc:id="3e891e8b-eed3-4d91-ad71-1acdcf580e6b" message="Invalid user Id" is="#[payload ]" expression="11"/>
 		</munit:validation>
 	</munit:test>
 
