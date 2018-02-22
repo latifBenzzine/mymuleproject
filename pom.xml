@@ -122,6 +122,15 @@
             <classifier>mule-plugin</classifier>
             <scope>test</scope>
         </dependency>
+        
+        <!-- https://mvnrepository.com/artifact/org.mule.distributions/mule-runtime-impl-bom -->
+		<dependency>
+		    <groupId>org.mule.distributions</groupId>
+		    <artifactId>mule-runtime-impl-bom</artifactId>
+		    <version>4.1.0</version>
+		</dependency>
+
+        
     </dependencies>
 
 	<repositories>
